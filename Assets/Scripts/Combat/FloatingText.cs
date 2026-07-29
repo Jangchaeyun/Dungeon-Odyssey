@@ -45,8 +45,7 @@ namespace DungeonOdyssey.Combat
             _text.alignment = TextAlignment.Center;
             _text.fontStyle = FontStyle.Bold;
             _text.fontSize = kind == FloatTextKind.Crit ? 54 : 44;
-            _text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf")
-                         ?? Resources.GetBuiltinResource<Font>("Arial.ttf");
+            _text.font = DungeonOdyssey.Core.GameFonts.Ui();
 
             switch (kind)
             {

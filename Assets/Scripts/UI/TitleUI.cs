@@ -33,6 +33,9 @@ namespace DungeonOdyssey.UI
 
         private void Start()
         {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            WebGLInput.captureAllKeyboardInput = true;
+#endif
             EnsureGameManager();
             WireButtons();
             ShowAuthOrPlay();

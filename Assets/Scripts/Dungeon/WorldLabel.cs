@@ -75,8 +75,7 @@ namespace DungeonOdyssey.Dungeon
             tm.alignment = TextAlignment.Center;
             tm.color = color;
             tm.fontStyle = FontStyle.Bold;
-            tm.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf")
-                      ?? Resources.GetBuiltinResource<Font>("Arial.ttf");
+            tm.font = DungeonOdyssey.Core.GameFonts.Ui();
             follower._text = tm;
             follower._textRenderer = tm.GetComponent<MeshRenderer>();
             if (follower._textRenderer != null)

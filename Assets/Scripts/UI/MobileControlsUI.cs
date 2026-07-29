@@ -211,8 +211,7 @@ namespace DungeonOdyssey.UI
             text.alignment = TextAnchor.MiddleCenter;
             text.color = Color.white;
             text.fontSize = Mathf.RoundToInt(size * 0.28f);
-            text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf")
-                        ?? Resources.GetBuiltinResource<Font>("Arial.ttf");
+            text.font = RuntimeUiFactory.UiFont();
             text.raycastTarget = false;
         }
 

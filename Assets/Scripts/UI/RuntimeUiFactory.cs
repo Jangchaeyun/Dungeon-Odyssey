@@ -46,11 +46,9 @@ namespace DungeonOdyssey.UI
             es.AddComponent<StandaloneInputModule>();
         }
 
-        private static Font UiFont()
-        {
-            return Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf")
-                   ?? Resources.GetBuiltinResource<Font>("Arial.ttf");
-        }
+        /// <summary>WebGL 포함 — 한글 글리프가 있는 번들 폰트 우선.</summary>
+        public static Font UiFont() => GameFonts.Ui();
+
 
         public static Text CreateText(Transform parent, string name, string content, int fontSize, Vector2 anchoredPos,
             Vector2 size, TextAnchor anchor = TextAnchor.MiddleCenter, Color? color = null)

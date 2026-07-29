@@ -273,8 +273,7 @@ namespace DungeonOdyssey.UI
             rt.anchoredPosition = pos;
             rt.sizeDelta = rect;
             var text = go.AddComponent<Text>();
-            text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf")
-                        ?? Resources.GetBuiltinResource<Font>("Arial.ttf");
+            text.font = RuntimeUiFactory.UiFont();
             text.text = content;
             text.fontSize = size;
             text.alignment = TextAnchor.MiddleCenter;

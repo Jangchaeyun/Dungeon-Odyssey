@@ -690,11 +690,7 @@ namespace DungeonOdyssey.UI
             rt.sizeDelta = rect;
             var text = go.AddComponent<Text>();
             text.text = content;
-            text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-            if (text.font == null)
-            {
-                text.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
-            }
+            text.font = RuntimeUiFactory.UiFont();
 
             text.fontSize = size;
             text.alignment = TextAnchor.MiddleCenter;
