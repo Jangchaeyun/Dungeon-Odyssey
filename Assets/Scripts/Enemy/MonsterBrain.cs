@@ -155,7 +155,7 @@ namespace DungeonOdyssey.Enemy
                     }
 
                     var side = Vector3.Cross(Vector3.up, toPlayer.normalized) *
-                               (Mathf.Sin(Time.time * 2.8f + GetInstanceID() * 0.01f) * 0.55f);
+                               (Mathf.Sin(Time.time * 2.8f + GetHashCode() * 0.01f) * 0.55f);
                     var spd = moveSpeed * (Time.time < _slowUntil ? _slowMul : 1f);
                     var chase = (desired + side).normalized * spd;
                     SetVelocity(chase);

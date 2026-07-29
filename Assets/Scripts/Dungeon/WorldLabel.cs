@@ -295,7 +295,7 @@ namespace DungeonOdyssey.Dungeon
 
                     // 우선순위 낮거나, 같으면 인스턴스ID로 아래쪽
                     var aBelow = a._priority < b._priority
-                                 || (a._priority == b._priority && a.GetInstanceID() < b.GetInstanceID());
+                                 || (a._priority == b._priority && a.GetHashCode() < b.GetHashCode());
                     if (aBelow)
                     {
                         stack++;

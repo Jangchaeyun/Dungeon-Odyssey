@@ -36,6 +36,18 @@ namespace DungeonOdyssey.EditorTools
                 return;
             }
 
+            if (!EditorUserBuildSettings.SwitchActiveBuildTarget(
+                    BuildPipeline.GetBuildTargetGroup(BuildTarget.WebGL), BuildTarget.WebGL))
+            {
+                Debug.LogError("WebGL 빌드 타깃으로 전환하지 못했습니다. Unity Hub에서 WebGL 모듈을 설치하세요.");
+                if (Application.isBatchMode)
+                {
+                    EditorApplication.Exit(1);
+                }
+
+                return;
+            }
+
             if (Directory.Exists(OutputDir))
             {
                 Directory.Delete(OutputDir, true);
