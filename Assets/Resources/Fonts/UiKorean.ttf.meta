@@ -5,12 +5,12 @@ TrueTypeFontImporter:
   serializedVersion: 4
   fontSize: 16
   forceTextureCase: -2
-  characterSpacing: 0
+  characterSpacing: 1
   characterPadding: 1
   includeFontData: 1
-  fontName: Pretendard
+  fontName: Gowun Dodum
   fontNames:
-  - Pretendard
+  - Gowun Dodum
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

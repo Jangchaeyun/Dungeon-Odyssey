@@ -239,29 +239,32 @@ namespace DungeonOdyssey.UI
             brandRt.sizeDelta = new Vector2(920f, 150f);
             brandRt.anchoredPosition = Vector2.zero;
 
-            var brandMark = CreateText(brand.transform, "Mark", "DUNGEON ODYSSEY", 12,
-                new Vector2(0f, 48f), new Vector2(640f, 20f), TextAnchor.MiddleCenter,
-                new Color(0.45f, 0.88f, 0.84f, 0.95f));
+            var brandMark = CreateText(brand.transform, "Mark", "DUNGEON ODYSSEY", 13,
+                new Vector2(0f, 50f), new Vector2(640f, 22f), TextAnchor.MiddleCenter,
+                new Color(0.52f, 0.9f, 0.86f, 0.92f));
             brandMark.fontStyle = FontStyle.Bold;
+            brandMark.lineSpacing = 1.05f;
 
             var rule = new GameObject("Rule");
             rule.transform.SetParent(brand.transform, false);
             var ruleRt = rule.AddComponent<RectTransform>();
-            ruleRt.sizeDelta = new Vector2(48f, 2f);
+            ruleRt.sizeDelta = new Vector2(56f, 2f);
             ruleRt.anchoredPosition = new Vector2(0f, 30f);
             rule.AddComponent<Image>().color = new Color(0.45f, 0.9f, 0.86f, 0.85f);
 
-            var title = CreateText(brand.transform, "Title", "던전 오디세이", 64,
-                new Vector2(0f, -4f), new Vector2(920f, 78f), TextAnchor.MiddleCenter,
+            var title = CreateText(brand.transform, "Title", "던전 오디세이", 68,
+                new Vector2(0f, -6f), new Vector2(920f, 82f), TextAnchor.MiddleCenter,
                 SoftWhite);
             title.fontStyle = FontStyle.Bold;
+            title.lineSpacing = 1.05f;
             var titleOutline = title.gameObject.AddComponent<Outline>();
-            titleOutline.effectColor = new Color(0.02f, 0.04f, 0.06f, 0.7f);
-            titleOutline.effectDistance = new Vector2(2f, -2f);
+            titleOutline.effectColor = new Color(0.02f, 0.04f, 0.06f, 0.75f);
+            titleOutline.effectDistance = new Vector2(2.2f, -2.2f);
 
-            CreateText(brand.transform, "Tagline", "끝없는 지하로 향하는 여정", 16,
-                new Vector2(0f, -52f), new Vector2(720f, 26f), TextAnchor.MiddleCenter,
-                new Color(0.62f, 0.68f, 0.74f, 0.92f));
+            var tagline = CreateText(brand.transform, "Tagline", "끝없는 지하로 향하는 여정", 17,
+                new Vector2(0f, -54f), new Vector2(720f, 28f), TextAnchor.MiddleCenter,
+                new Color(0.68f, 0.74f, 0.78f, 0.95f));
+            tagline.lineSpacing = 1.15f;
 
             // —— CTA / 인증 (하단 카드, 푸터와 안 겹치게) ——
             var cta = new GameObject("Cta");
