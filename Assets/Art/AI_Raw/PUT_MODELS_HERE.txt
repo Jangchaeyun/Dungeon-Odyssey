@@ -1,0 +1,17 @@
+Put Meshy/Tripo FBX or Prefab files here with these names:
+  Player.fbx
+  Monster_Slime.fbx
+  Npc_Mira.fbx
+  Town_House.fbx
+  Town_Tree.fbx
+  Town_Stall.fbx
+  Dungeon_Pillar.fbx
+  Dungeon_Torch.fbx
+  Dungeon_Chest.fbx
+  Dungeon_Altar.fbx
+  Dungeon_Door.fbx
+  Dungeon_Gate.fbx
+  Exit_Portal.fbx
+
+Then in Unity: Dungeon Odyssey -> 3. Apply AI Models
+Or run: python Tools/meshy_generate.py  (needs MESHY_API_KEY)
