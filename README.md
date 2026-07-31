@@ -2,6 +2,11 @@
 
 Unity 6 + C# 기반 2D 로그라이크 RPG — **1차 마일스톤**
 
+## 플레이
+
+- **웹 플레이**: https://jangchaeyun.github.io/Dungeon-Odyssey/
+- **소스**: https://github.com/Jangchaeyun/Dungeon-Odyssey
+
 ## 요구 사항
 
 - Unity **6000.x** (Unity 6)
@@ -12,6 +17,14 @@ Unity 6 + C# 기반 2D 로그라이크 RPG — **1차 마일스톤**
 1. Unity Hub에서 이 폴더를 프로젝트로 추가·실행합니다.
 2. 상단 메뉴 **`Dungeon Odyssey → 1. Setup Project (Scenes + Build Settings)`** 를 실행합니다.
 3. 생성된 `Title` 씬에서 **Play** 합니다.
+
+## WebGL 빌드 · GitHub Pages
+
+```
+Dungeon Odyssey → Build WebGL (GitHub Pages)
+```
+
+산출물: `Builds/WebGL` → `gh-pages` 브랜치로 배포
 
 ## 1차 마일스톤 기능
 

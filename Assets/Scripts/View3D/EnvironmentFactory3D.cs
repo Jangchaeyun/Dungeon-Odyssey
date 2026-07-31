@@ -9,30 +9,31 @@ namespace DungeonOdyssey.View3D
         {
             BuildTownGround(root);
 
-            // —— 서쪽 거주 구역 ——
+            // —— 서쪽 거주 구역 (파란/빨간 기와 교대) ——
             BuildHouse(root, new Vector3(-18f, 0f, 6.5f), new Vector3(5.4f, 3.4f, 4.4f), MatLib.Roof, lit: true);
             BuildHouse(root, new Vector3(-19.5f, 0f, -5.5f), new Vector3(4.8f, 3f, 3.8f),
-                new Color(0.22f, 0.14f, 0.12f), lit: true);
-            BuildHouse(root, new Vector3(-13.5f, 0f, 9.5f), new Vector3(4.2f, 2.9f, 3.5f), MatLib.StoneDark);
-            BuildHouse(root, new Vector3(-14.2f, 0f, -9.2f), new Vector3(4f, 2.7f, 3.4f), MatLib.Roof, lit: true);
+                MatLib.RoofRed, lit: true);
+            BuildHouse(root, new Vector3(-13.5f, 0f, 9.5f), new Vector3(4.2f, 2.9f, 3.5f), MatLib.Roof);
+            BuildHouse(root, new Vector3(-14.2f, 0f, -9.2f), new Vector3(4f, 2.7f, 3.4f), MatLib.RoofRed, lit: true);
 
             // —— 북쪽 · 남쪽 주택 ——
             BuildHouse(root, new Vector3(-4f, 0f, 13.5f), new Vector3(5f, 3.1f, 4f),
-                new Color(0.2f, 0.18f, 0.16f), lit: true);
-            BuildHouse(root, new Vector3(4.5f, 0f, 12.8f), new Vector3(4.6f, 3f, 3.6f), MatLib.StoneDark);
+                MatLib.Roof, lit: true);
+            BuildHouse(root, new Vector3(4.5f, 0f, 12.8f), new Vector3(4.6f, 3f, 3.6f), MatLib.RoofRed);
             BuildHouse(root, new Vector3(-5.5f, 0f, -12.5f), new Vector3(4.4f, 2.8f, 3.5f), MatLib.Roof);
             BuildHouse(root, new Vector3(5f, 0f, -13f), new Vector3(4.2f, 2.9f, 3.4f),
-                new Color(0.24f, 0.16f, 0.14f), lit: true);
+                MatLib.RoofRed, lit: true);
 
-            // —— 동쪽(던전 길목) ——
-            BuildHouse(root, new Vector3(12.5f, 0f, 8.5f), new Vector3(4.5f, 3f, 3.6f), MatLib.StoneDark, lit: true);
-            BuildHouse(root, new Vector3(13f, 0f, -8.8f), new Vector3(4.2f, 2.8f, 3.4f), MatLib.Roof);
+            // —— 동쪽(던전 길목) · Borin 쪽 빨간 지붕 대장간 ——
+            BuildHouse(root, new Vector3(12.5f, 0f, 8.5f), new Vector3(4.5f, 3f, 3.6f), MatLib.Roof, lit: true);
+            BuildHouse(root, new Vector3(13f, 0f, -8.8f), new Vector3(4.2f, 2.8f, 3.4f), MatLib.RoofRed,
+                lit: true, forgeFront: true);
 
-            // 시장 가판 — 길에서 비켜 배치
-            BuildStall(root, new Vector3(-9.5f, 0f, -3.2f), MatLib.AccentWine, 0f);
-            BuildStall(root, new Vector3(-7.2f, 0f, 4.2f), MatLib.AccentTeal, 180f);
-            BuildStall(root, new Vector3(6.8f, 0f, 4.5f), MatLib.AccentCopper, 180f);
-            BuildStall(root, new Vector3(8.2f, 0f, -3.8f), new Color(0.4f, 0.28f, 0.22f), 0f);
+            // 시장 가판 — 줄무늬 캐노피
+            BuildStall(root, new Vector3(-9.5f, 0f, -3.2f), MatLib.AccentWine, 0f, striped: true);
+            BuildStall(root, new Vector3(-7.2f, 0f, 4.2f), MatLib.Roof, 180f, striped: true);
+            BuildStall(root, new Vector3(6.8f, 0f, 4.5f), MatLib.AccentWine, 180f, striped: true);
+            BuildStall(root, new Vector3(8.2f, 0f, -3.8f), MatLib.Roof, 0f, striped: true);
 
             BuildWell(root, new Vector3(-1.5f, 0f, -2.4f));
 
@@ -89,30 +90,32 @@ namespace DungeonOdyssey.View3D
             BuildTownBarrel(root, new Vector3(5.8f, 0f, 5.2f));
             BuildTownBarrel(root, new Vector3(14.5f, 0f, 3.5f));
 
-            // 광장 깃발 — Mira와 멀리 (위에서 보면 빨간 판처럼 보이던 위치 피함)
-            BuildTownBanner(root, new Vector3(-8.5f, 0f, 8.5f), MatLib.AccentTeal);
-            BuildTownBanner(root, new Vector3(8.5f, 0f, 8.5f), MatLib.AccentCopper);
+            // 광장 · 성문 깃발
+            BuildTownBanner(root, new Vector3(-8.5f, 0f, 8.5f), MatLib.AccentWine);
+            BuildTownBanner(root, new Vector3(8.5f, 0f, 8.5f), MatLib.AccentWine);
+            BuildTownBanner(root, new Vector3(16.2f, 0f, 2.8f), MatLib.AccentWine);
+            BuildTownBanner(root, new Vector3(16.2f, 0f, -2f), MatLib.AccentWine);
 
             var signRoot = new GameObject("Sign");
             signRoot.transform.SetParent(root, false);
             signRoot.transform.position = new Vector3(17.5f, 0f, -2.2f);
             Prim.Cube("SignPole", signRoot.transform, new Vector3(0f, 1.15f, 0f), new Vector3(0.12f, 2.3f, 0.12f),
-                MatLib.MetalDark, 0.4f);
+                MatLib.Wood, 0.25f);
             Prim.Cube("SignBoard", signRoot.transform, new Vector3(0.85f, 1.7f, 0f), new Vector3(1.5f, 0.7f, 0.08f),
-                MatLib.StoneDark, 0.25f);
+                MatLib.Wood, 0.2f);
             SolidBox(signRoot.transform, "SignBlock", new Vector3(0.4f, 1.2f, 0f), new Vector3(1.6f, 2.4f, 0.35f));
             WorldLabel.Attach(signRoot.transform, "던전 입구 →", new Vector3(0.85f, 2.35f, 0f),
-                new Color(0.55f, 0.9f, 0.85f), 0.04f, LabelShowMode.Proximity, 6f);
+                new Color(0.95f, 0.85f, 0.45f), 0.04f, LabelShowMode.Proximity, 6f);
 
-            // 황혼 조명 (과하지 않게)
-            EnsureDirectionalLight(new Color(0.92f, 0.78f, 0.62f), new Vector3(35f, -35f, 10f));
-            EnsureFillLight(new Color(0.3f, 0.4f, 0.55f), new Vector3(-25f, 45f, -20f), 0.42f);
+            // 따뜻한 황혼 키라이트 + 스카이 필
+            EnsureDirectionalLight(new Color(1f, 0.88f, 0.7f), new Vector3(38f, -40f, 8f), intensity: 1.85f);
+            EnsureFillLight(new Color(0.45f, 0.58f, 0.78f), new Vector3(-30f, 50f, -15f), 0.55f);
             RenderSettings.fog = true;
             RenderSettings.fogMode = FogMode.Exponential;
-            RenderSettings.fogColor = new Color(0.32f, 0.32f, 0.36f);
-            RenderSettings.fogDensity = 0.008f;
+            RenderSettings.fogColor = MatLib.Fog;
+            RenderSettings.fogDensity = 0.0045f;
             RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
-            RenderSettings.ambientLight = new Color(0.27f, 0.27f, 0.31f);
+            RenderSettings.ambientLight = new Color(0.42f, 0.44f, 0.5f);
         }
 
         private static void BuildTownBench(Transform root, Vector3 pos, float yaw)
@@ -713,47 +716,41 @@ namespace DungeonOdyssey.View3D
         /// </summary>
         private static void BuildTownGround(Transform root)
         {
-            // 넓은 기반 지형
+            // 넓은 잔디 기반
             GroundSlab(root, "Earth", Vector3.zero, new Vector2(88f, 64f), MatLib.GrassDark, topY: 0f, thick: 0.8f,
                 withCollider: true);
 
             GroundSlab(root, "GrassW", new Vector3(-18f, 0f, -4f), new Vector2(28f, 22f), MatLib.Grass, 0.02f);
             GroundSlab(root, "GrassE", new Vector3(16f, 0f, 4f), new Vector2(24f, 20f), MatLib.Grass, 0.02f);
-            GroundSlab(root, "GrassN", new Vector3(0f, 0f, 12f), new Vector2(36f, 14f),
-                new Color(0.18f, 0.24f, 0.17f), 0.02f);
+            GroundSlab(root, "GrassN", new Vector3(0f, 0f, 12f), new Vector2(36f, 14f), MatLib.Grass, 0.02f);
             GroundSlab(root, "GrassS", new Vector3(0f, 0f, -12f), new Vector2(34f, 12f),
-                new Color(0.17f, 0.23f, 0.16f), 0.02f);
+                Color.Lerp(MatLib.Grass, MatLib.GrassDark, 0.25f), 0.02f);
 
-            // 잔디 얼룩 · 흙 패치
             GroundSlab(root, "PatchA", new Vector3(-15f, 0f, 5f), new Vector2(6f, 4f),
-                new Color(0.2f, 0.28f, 0.18f), 0.025f);
+                Color.Lerp(MatLib.Grass, MatLib.Leaf, 0.35f), 0.025f);
             GroundSlab(root, "DirtYardW", new Vector3(-17f, 0f, 0.5f), new Vector2(8f, 6f),
-                new Color(0.32f, 0.28f, 0.22f), 0.03f);
+                new Color(0.48f, 0.4f, 0.3f), 0.03f);
 
-            // 동서 큰길
+            // 동서 코블 큰길
             GroundSlab(root, "Road", new Vector3(2f, 0f, 0.4f), new Vector2(52f, 4.2f), MatLib.Path, 0.04f);
             GroundSlab(root, "RoadEdgeN", new Vector3(2f, 0f, 2.65f), new Vector2(52f, 0.32f),
-                MatLib.StoneDark, 0.06f);
+                MatLib.Stone, 0.06f);
             GroundSlab(root, "RoadEdgeS", new Vector3(2f, 0f, -1.85f), new Vector2(52f, 0.32f),
-                MatLib.StoneDark, 0.06f);
+                MatLib.Stone, 0.06f);
 
-            // 남북 교차로
             GroundSlab(root, "RoadCross", new Vector3(-1.5f, 0f, 0.2f), new Vector2(4f, 26f), MatLib.Path, 0.045f);
+            GroundSlab(root, "RoadGate", new Vector3(18f, 0f, 0.4f), new Vector2(16f, 3.2f), MatLib.Path, 0.05f);
 
-            GroundSlab(root, "RoadGate", new Vector3(18f, 0f, 0.4f), new Vector2(16f, 3.2f),
-                new Color(0.3f, 0.3f, 0.32f), 0.05f);
-
-            // 집 앞 돌패드
             GroundSlab(root, "DoorPad1", new Vector3(-18f, 0f, 4.2f), new Vector2(2.2f, 1.4f),
                 MatLib.Stone, 0.06f);
             GroundSlab(root, "DoorPad2", new Vector3(-4f, 0f, 11.2f), new Vector2(2f, 1.2f),
                 MatLib.Stone, 0.06f);
 
-            // 중앙 광장
+            // 중앙 광장 — 밝은 체크 코블
             const float plazaX = -1.5f;
             const float plazaZ = 0.8f;
             GroundSlab(root, "PlazaBase", new Vector3(plazaX, 0f, plazaZ), new Vector2(16f, 14f),
-                MatLib.StoneDark, 0.04f);
+                MatLib.Stone, 0.04f);
 
             const float tile = 1.55f;
             for (var ix = -4; ix <= 4; ix++)
@@ -761,10 +758,9 @@ namespace DungeonOdyssey.View3D
                 for (var iz = -3; iz <= 3; iz++)
                 {
                     var darker = ((ix + iz) & 1) == 0;
-                    var worn = (ix * ix + iz * iz) < 4;
                     var c = darker
-                        ? (worn ? new Color(0.3f, 0.3f, 0.32f) : new Color(0.34f, 0.34f, 0.36f))
-                        : (worn ? new Color(0.38f, 0.37f, 0.36f) : new Color(0.42f, 0.41f, 0.4f));
+                        ? new Color(0.55f, 0.52f, 0.46f)
+                        : new Color(0.68f, 0.64f, 0.56f);
                     GroundSlab(root, $"Tile_{ix}_{iz}",
                         new Vector3(plazaX + ix * tile, 0f, plazaZ + iz * tile),
                         new Vector2(tile - 0.08f, tile - 0.08f), c, 0.09f, 0.05f);
@@ -772,29 +768,21 @@ namespace DungeonOdyssey.View3D
             }
 
             GroundSlab(root, "PlazaRimN", new Vector3(plazaX, 0f, plazaZ + 7.1f), new Vector2(16.4f, 0.35f),
-                MatLib.GoldTrim, 0.12f);
+                MatLib.StoneDark, 0.12f);
             GroundSlab(root, "PlazaRimS", new Vector3(plazaX, 0f, plazaZ - 7.1f), new Vector2(16.4f, 0.35f),
-                MatLib.GoldTrim, 0.12f);
+                MatLib.StoneDark, 0.12f);
             GroundSlab(root, "PlazaRimE", new Vector3(plazaX + 8.2f, 0f, plazaZ), new Vector2(0.35f, 14.2f),
-                MatLib.GoldTrim, 0.12f);
+                MatLib.StoneDark, 0.12f);
             GroundSlab(root, "PlazaRimW", new Vector3(plazaX - 8.2f, 0f, plazaZ), new Vector2(0.35f, 14.2f),
-                MatLib.GoldTrim, 0.12f);
+                MatLib.StoneDark, 0.12f);
 
             Prim.Cyl("PlazaDisc", root, new Vector3(plazaX, 0.13f, plazaZ), new Vector3(4.6f, 0.02f, 4.6f),
-                new Color(0.32f, 0.32f, 0.34f), 0.2f);
+                new Color(0.6f, 0.56f, 0.48f), 0.2f);
             Prim.Cyl("PlazaCenter", root, new Vector3(plazaX, 0.145f, plazaZ), new Vector3(2f, 0.018f, 2f),
-                new Color(0.38f, 0.36f, 0.32f), 0.25f);
-            for (var i = 0; i < 10; i++)
-            {
-                var a = i * 36f * Mathf.Deg2Rad;
-                Prim.Cube($"PlazaAccent{i}", root,
-                    new Vector3(plazaX + Mathf.Cos(a) * 2.4f, 0.155f, plazaZ + Mathf.Sin(a) * 2.4f),
-                    new Vector3(0.38f, 0.03f, 0.12f), MatLib.GoldTrim, 0.35f);
-            }
+                new Color(0.7f, 0.66f, 0.56f), 0.25f);
 
-            // 서쪽 시장 석판
             GroundSlab(root, "MarketPad", new Vector3(-10f, 0f, 0.5f), new Vector2(10f, 8f),
-                new Color(0.28f, 0.27f, 0.26f), 0.05f);
+                new Color(0.52f, 0.48f, 0.4f), 0.05f);
         }
 
         private static void GroundSlab(Transform parent, string name, Vector3 center, Vector2 sizeXZ, Color color,
@@ -982,7 +970,7 @@ namespace DungeonOdyssey.View3D
         }
 
         private static void BuildHouse(Transform parent, Vector3 pos, Vector3 scale, Color roofColor,
-            bool lit = false)
+            bool lit = false, bool forgeFront = false)
         {
             var ai = ModelCatalog.TrySpawn(ModelCatalog.TownHouse, pos, parent);
             if (ai != null)
@@ -994,7 +982,7 @@ namespace DungeonOdyssey.View3D
             house.transform.SetParent(parent, false);
             house.transform.position = pos;
 
-            var wallTone = Color.Lerp(MatLib.Stone, new Color(0.48f, 0.44f, 0.4f), 0.35f);
+            var wallTone = Color.Lerp(MatLib.Stone, new Color(0.72f, 0.64f, 0.52f), 0.45f);
             var body = GameObject.CreatePrimitive(PrimitiveType.Cube);
             body.name = "Body";
             body.transform.SetParent(house.transform, false);
@@ -1009,12 +997,19 @@ namespace DungeonOdyssey.View3D
             Prim.Cube("Foundation", house.transform, new Vector3(0f, 0.08f, 0f),
                 new Vector3(scale.x + 0.3f, 0.16f, scale.z + 0.3f), MatLib.StoneDark, 0.15f);
 
-            // 안정적인 슬랩 지붕 (+ 살짝 큰 처마)
+            // 팀버 프레임
+            Prim.Cube("BeamMid", house.transform, new Vector3(0f, hy * 0.55f, hz + 0.02f),
+                new Vector3(scale.x + 0.02f, 0.12f, 0.06f), MatLib.Wood, 0.2f);
+            Prim.Cube("BeamVL", house.transform, new Vector3(-hx * 0.55f, hy * 0.5f, hz + 0.02f),
+                new Vector3(0.12f, hy * 0.85f, 0.06f), MatLib.Wood, 0.2f);
+            Prim.Cube("BeamVR", house.transform, new Vector3(hx * 0.55f, hy * 0.5f, hz + 0.02f),
+                new Vector3(0.12f, hy * 0.85f, 0.06f), MatLib.Wood, 0.2f);
+
             Prim.Cube("Roof", house.transform, new Vector3(0f, hy + 0.2f, 0f),
                 new Vector3(scale.x + 0.7f, 0.45f, scale.z + 0.7f), roofColor, 0.12f);
             Prim.Cube("RoofPeak", house.transform, new Vector3(0f, hy + 0.48f, 0f),
                 new Vector3(scale.x * 0.55f, 0.22f, scale.z * 0.55f),
-                Color.Lerp(roofColor, MatLib.MetalDark, 0.25f), 0.15f);
+                Color.Lerp(roofColor, MatLib.StoneDark, 0.2f), 0.15f);
 
             Prim.Cube("Chimney", house.transform, new Vector3(hx * 0.4f, hy + 0.85f, -hz * 0.3f),
                 new Vector3(0.5f, 0.9f, 0.5f), MatLib.StoneDark, 0.15f);
@@ -1025,17 +1020,17 @@ namespace DungeonOdyssey.View3D
             Prim.Cube("DoorFrame", house.transform, new Vector3(0f, 1.05f, frontZ),
                 new Vector3(1.0f, 2.0f, 0.08f), MatLib.Wood, 0.15f);
             Prim.Cube("Door", house.transform, new Vector3(0f, 1f, frontZ + 0.04f),
-                new Vector3(0.8f, 1.85f, 0.06f), new Color(0.22f, 0.14f, 0.1f), 0.2f);
+                new Vector3(0.8f, 1.85f, 0.06f), new Color(0.35f, 0.22f, 0.14f), 0.2f);
             Prim.Sphere("DoorKnob", house.transform, new Vector3(0.28f, 1f, frontZ + 0.1f), 0.08f,
                 MatLib.GoldTrim, 0.55f);
 
             var winMat = lit
-                ? MatLib.GetEmissive(new Color(0.85f, 0.7f, 0.4f), new Color(1f, 0.75f, 0.35f), 1.2f, 0.55f)
-                : MatLib.Get(new Color(0.22f, 0.32f, 0.38f), 0.65f);
+                ? MatLib.GetEmissive(new Color(1f, 0.82f, 0.45f), new Color(1f, 0.78f, 0.35f), 1.6f, 0.55f)
+                : MatLib.Get(new Color(0.45f, 0.62f, 0.72f), 0.65f);
 
             var winY = hy * 0.55f;
             var winL = Prim.Cube("WinL", house.transform, new Vector3(-hx * 0.42f, winY, frontZ),
-                new Vector3(0.65f, 0.7f, 0.06f), new Color(0.25f, 0.35f, 0.4f), 0.55f);
+                new Vector3(0.65f, 0.7f, 0.06f), new Color(0.45f, 0.62f, 0.72f), 0.55f);
             winL.GetComponent<MeshRenderer>().sharedMaterial = winMat;
             Prim.Cube("WinLFrame", house.transform, new Vector3(-hx * 0.42f, winY, frontZ - 0.02f),
                 new Vector3(0.78f, 0.82f, 0.05f), MatLib.Wood, 0.2f);
@@ -1043,7 +1038,7 @@ namespace DungeonOdyssey.View3D
                 new Vector3(0.65f, 0.05f, 0.03f), MatLib.Wood, 0.2f);
 
             var winR = Prim.Cube("WinR", house.transform, new Vector3(hx * 0.42f, winY, frontZ),
-                new Vector3(0.65f, 0.7f, 0.06f), new Color(0.25f, 0.35f, 0.4f), 0.55f);
+                new Vector3(0.65f, 0.7f, 0.06f), new Color(0.45f, 0.62f, 0.72f), 0.55f);
             winR.GetComponent<MeshRenderer>().sharedMaterial = winMat;
             Prim.Cube("WinRFrame", house.transform, new Vector3(hx * 0.42f, winY, frontZ - 0.02f),
                 new Vector3(0.78f, 0.82f, 0.05f), MatLib.Wood, 0.2f);
@@ -1051,7 +1046,7 @@ namespace DungeonOdyssey.View3D
                 new Vector3(0.65f, 0.05f, 0.03f), MatLib.Wood, 0.2f);
 
             Prim.Cube("Trim", house.transform, new Vector3(0f, hy * 0.88f, frontZ),
-                new Vector3(scale.x + 0.05f, 0.1f, 0.06f), MatLib.NpcTrim, 0.4f);
+                new Vector3(scale.x + 0.05f, 0.1f, 0.06f), MatLib.Wood, 0.3f);
             Prim.Cube("Step", house.transform, new Vector3(0f, 0.1f, frontZ + 0.4f),
                 new Vector3(1.25f, 0.18f, 0.5f), MatLib.Stone, 0.15f);
 
@@ -1059,9 +1054,24 @@ namespace DungeonOdyssey.View3D
             {
                 var glow = winL.AddComponent<Light>();
                 glow.type = LightType.Point;
-                glow.range = 4.2f;
-                glow.intensity = 0.45f;
-                glow.color = new Color(1f, 0.72f, 0.4f);
+                glow.range = 5.5f;
+                glow.intensity = 0.75f;
+                glow.color = new Color(1f, 0.78f, 0.42f);
+            }
+
+            if (forgeFront)
+            {
+                var forge = Prim.Cube("ForgeGlow", house.transform, new Vector3(0f, 0.7f, frontZ + 0.55f),
+                    new Vector3(1.4f, 0.9f, 0.7f), new Color(0.9f, 0.4f, 0.15f), 0.2f);
+                forge.GetComponent<MeshRenderer>().sharedMaterial =
+                    MatLib.GetEmissive(new Color(0.85f, 0.35f, 0.12f), new Color(1f, 0.55f, 0.2f), 2.2f, 0.25f);
+                Prim.Cube("Anvil", house.transform, new Vector3(0.7f, 0.45f, frontZ + 0.9f),
+                    new Vector3(0.55f, 0.45f, 0.35f), MatLib.MetalDark, 0.45f);
+                var forgeLight = forge.AddComponent<Light>();
+                forgeLight.type = LightType.Point;
+                forgeLight.color = new Color(1f, 0.55f, 0.25f);
+                forgeLight.range = 6.5f;
+                forgeLight.intensity = 1.4f;
             }
         }
 
@@ -1076,7 +1086,7 @@ namespace DungeonOdyssey.View3D
             body.transform.SetParent(wellRoot.transform, false);
             body.transform.localPosition = new Vector3(0f, 0.45f, 0f);
             body.transform.localScale = new Vector3(1.7f, 0.9f, 1.7f);
-            body.GetComponent<MeshRenderer>().sharedMaterial = MatLib.Get(MatLib.DungeonWall, 0.15f);
+            body.GetComponent<MeshRenderer>().sharedMaterial = MatLib.Get(MatLib.StoneDark, 0.15f);
 
             Prim.Cyl("WellRim", wellRoot.transform, new Vector3(0f, 0.95f, 0f), new Vector3(1.95f, 0.14f, 1.95f),
                 MatLib.Stone, 0.2f);
@@ -1139,7 +1149,8 @@ namespace DungeonOdyssey.View3D
             SolidBox(parent, "BushBlock", pos + Vector3.up * 0.4f, new Vector3(0.85f, 0.8f, 0.85f));
         }
 
-        private static void BuildStall(Transform parent, Vector3 pos, Color canopyColor, float yaw = 0f)
+        private static void BuildStall(Transform parent, Vector3 pos, Color canopyColor, float yaw = 0f,
+            bool striped = false)
         {
             if (ModelCatalog.TrySpawn(ModelCatalog.TownStall, pos, parent) != null)
             {
@@ -1158,12 +1169,32 @@ namespace DungeonOdyssey.View3D
                 MatLib.Wood);
             Prim.Cyl("PoleR", stall.transform, new Vector3(0.95f, 1.55f, 0f), new Vector3(0.08f, 0.7f, 0.08f),
                 MatLib.Wood);
-            Prim.Cube("Canopy", stall.transform, new Vector3(0f, 2.2f, 0f), new Vector3(2.5f, 0.12f, 1.5f),
-                canopyColor, 0.2f);
-            Prim.Sphere("GoodsA", stall.transform, new Vector3(-0.45f, 1.2f, 0.15f), 0.26f,
-                new Color(0.7f, 0.35f, 0.25f), 0.25f);
-            Prim.Cube("GoodsB", stall.transform, new Vector3(0.4f, 1.18f, 0.1f), new Vector3(0.35f, 0.25f, 0.3f),
-                MatLib.AccentCopper, 0.2f);
+
+            if (striped)
+            {
+                var stripeA = canopyColor;
+                var stripeB = Color.Lerp(MatLib.White, canopyColor, 0.15f);
+                for (var i = 0; i < 5; i++)
+                {
+                    var x = -1f + i * 0.5f;
+                    Prim.Cube($"Stripe{i}", stall.transform, new Vector3(x, 2.2f, 0f),
+                        new Vector3(0.48f, 0.12f, 1.5f), (i & 1) == 0 ? stripeA : stripeB, 0.2f);
+                }
+            }
+            else
+            {
+                Prim.Cube("Canopy", stall.transform, new Vector3(0f, 2.2f, 0f), new Vector3(2.5f, 0.12f, 1.5f),
+                    canopyColor, 0.2f);
+            }
+
+            Prim.Sphere("AppleA", stall.transform, new Vector3(-0.5f, 1.2f, 0.15f), 0.22f,
+                new Color(0.85f, 0.22f, 0.18f), 0.25f);
+            Prim.Sphere("AppleB", stall.transform, new Vector3(-0.28f, 1.18f, 0.05f), 0.2f,
+                new Color(0.9f, 0.28f, 0.2f), 0.25f);
+            Prim.Sphere("Lemon", stall.transform, new Vector3(0.35f, 1.18f, 0.1f), 0.2f,
+                new Color(0.95f, 0.82f, 0.25f), 0.25f);
+            Prim.Cube("Crate", stall.transform, new Vector3(0.55f, 1.15f, -0.1f), new Vector3(0.4f, 0.28f, 0.35f),
+                MatLib.Wood, 0.2f);
             SolidBox(stall.transform, "StallBlock", new Vector3(0f, 0.7f, 0f), new Vector3(2.3f, 1.4f, 1.3f));
         }
 
@@ -1180,10 +1211,15 @@ namespace DungeonOdyssey.View3D
             tree.transform.position = pos;
             tree.transform.localScale = Vector3.one * scale;
 
-            Prim.Cyl("Trunk", tree.transform, new Vector3(0f, 0.85f, 0f),
-                new Vector3(0.4f, 0.85f, 0.4f), MatLib.Wood, 0.15f);
-            Prim.Sphere("Leaves", tree.transform, new Vector3(0f, 2.4f, 0f), 2.2f, MatLib.Leaf, 0.12f);
-            Prim.Sphere("LeavesB", tree.transform, new Vector3(0.4f, 2.15f, 0.25f), 1.4f, MatLib.GrassDark, 0.1f);
+            Prim.Cyl("Trunk", tree.transform, new Vector3(0f, 0.7f, 0f),
+                new Vector3(0.35f, 0.7f, 0.35f), MatLib.Wood, 0.15f);
+            // 티어형 소나무 콘
+            Prim.Cube("Tier1", tree.transform, new Vector3(0f, 1.55f, 0f), new Vector3(1.9f, 0.85f, 1.9f),
+                MatLib.Leaf, 0.12f);
+            Prim.Cube("Tier2", tree.transform, new Vector3(0f, 2.25f, 0f), new Vector3(1.4f, 0.75f, 1.4f),
+                Color.Lerp(MatLib.Leaf, MatLib.Grass, 0.25f), 0.12f);
+            Prim.Cube("Tier3", tree.transform, new Vector3(0f, 2.85f, 0f), new Vector3(0.9f, 0.65f, 0.9f),
+                MatLib.Leaf, 0.12f);
             SolidBox(tree.transform, "TreeBlock", new Vector3(0f, 1f, 0f), new Vector3(0.85f, 2f, 0.85f));
         }
 
@@ -1194,11 +1230,11 @@ namespace DungeonOdyssey.View3D
             lampRoot.transform.position = pos;
 
             Prim.Cyl("Pole", lampRoot.transform, new Vector3(0f, 1.25f, 0f), new Vector3(0.14f, 1.25f, 0.14f),
-                MatLib.MetalDark, 0.4f);
+                MatLib.Wood, 0.3f);
             Prim.Cube("Base", lampRoot.transform, new Vector3(0f, 0.08f, 0f), new Vector3(0.4f, 0.16f, 0.4f),
-                MatLib.StoneDark, 0.2f);
+                MatLib.Stone, 0.2f);
             Prim.Cube("Arm", lampRoot.transform, new Vector3(0.4f, 2.35f, 0f), new Vector3(0.8f, 0.08f, 0.08f),
-                MatLib.MetalDark, 0.4f);
+                MatLib.Wood, 0.3f);
 
             var lantern = GameObject.CreatePrimitive(PrimitiveType.Cube);
             lantern.name = "Lantern";
@@ -1206,7 +1242,7 @@ namespace DungeonOdyssey.View3D
             lantern.transform.localPosition = new Vector3(0.75f, 1.95f, 0f);
             lantern.transform.localScale = new Vector3(0.32f, 0.38f, 0.32f);
             lantern.GetComponent<MeshRenderer>().sharedMaterial =
-                MatLib.GetEmissive(new Color(0.85f, 0.55f, 0.28f), new Color(1f, 0.65f, 0.3f), 1.5f, 0.4f);
+                MatLib.GetEmissive(new Color(1f, 0.65f, 0.3f), new Color(1f, 0.7f, 0.35f), 2f, 0.4f);
             Object.Destroy(lantern.GetComponent<Collider>());
 
             Prim.Cube("LampRoof", lampRoot.transform, new Vector3(0.75f, 2.18f, 0f), new Vector3(0.42f, 0.08f, 0.42f),
@@ -1215,9 +1251,9 @@ namespace DungeonOdyssey.View3D
 
             var light = lantern.AddComponent<Light>();
             light.type = LightType.Point;
-            light.range = 7.5f * intensity;
-            light.intensity = 1.25f * intensity;
-            light.color = new Color(1f, 0.72f, 0.42f);
+            light.range = 9.5f * intensity;
+            light.intensity = 1.85f * intensity;
+            light.color = new Color(1f, 0.75f, 0.42f);
         }
 
         public static GameObject CreateDungeonGate(Vector3 position, Transform parent = null)
@@ -1256,34 +1292,59 @@ namespace DungeonOdyssey.View3D
             // 문 구멍이 ±Z → 90° 돌려 동쪽(+X)으로 통과하게
             root.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
 
-            Prim.Cube("PillarL", root.transform, new Vector3(-1.35f, 1.7f, 0f), new Vector3(0.55f, 3.4f, 0.7f),
-                MatLib.DungeonWall, 0.25f);
-            Prim.Cube("PillarR", root.transform, new Vector3(1.35f, 1.7f, 0f), new Vector3(0.55f, 3.4f, 0.7f),
-                MatLib.DungeonWall, 0.25f);
-            Prim.Cube("Lintel", root.transform, new Vector3(0f, 3.5f, 0f), new Vector3(3.4f, 0.45f, 0.75f),
-                MatLib.AccentCopper, 0.5f);
-            Prim.Cube("Keystone", root.transform, new Vector3(0f, 3.85f, 0.05f), new Vector3(0.5f, 0.4f, 0.55f),
-                MatLib.AccentWine, 0.45f);
-            Prim.Cube("Threshold", root.transform, new Vector3(0f, 0.1f, 0.2f), new Vector3(2.8f, 0.2f, 1.1f),
+            // 쌍탑 성문
+            Prim.Cube("TowerL", root.transform, new Vector3(-2.2f, 2.4f, 0f), new Vector3(1.5f, 4.8f, 1.5f),
+                MatLib.Stone, 0.2f);
+            Prim.Cube("TowerR", root.transform, new Vector3(2.2f, 2.4f, 0f), new Vector3(1.5f, 4.8f, 1.5f),
+                MatLib.Stone, 0.2f);
+            Prim.Cube("TowerCapL", root.transform, new Vector3(-2.2f, 5f, 0f), new Vector3(1.75f, 0.35f, 1.75f),
                 MatLib.StoneDark, 0.2f);
+            Prim.Cube("TowerCapR", root.transform, new Vector3(2.2f, 5f, 0f), new Vector3(1.75f, 0.35f, 1.75f),
+                MatLib.StoneDark, 0.2f);
+            Prim.Cube("WindowL", root.transform, new Vector3(-2.2f, 3.6f, 0.78f), new Vector3(0.45f, 0.55f, 0.08f),
+                new Color(1f, 0.8f, 0.4f), 0.4f);
+            Prim.Cube("WindowR", root.transform, new Vector3(2.2f, 3.6f, 0.78f), new Vector3(0.45f, 0.55f, 0.08f),
+                new Color(1f, 0.8f, 0.4f), 0.4f);
 
+            Prim.Cube("PillarL", root.transform, new Vector3(-1.35f, 1.7f, 0f), new Vector3(0.55f, 3.4f, 0.7f),
+                MatLib.StoneDark, 0.25f);
+            Prim.Cube("PillarR", root.transform, new Vector3(1.35f, 1.7f, 0f), new Vector3(0.55f, 3.4f, 0.7f),
+                MatLib.StoneDark, 0.25f);
+            Prim.Cube("Lintel", root.transform, new Vector3(0f, 3.5f, 0f), new Vector3(3.4f, 0.45f, 0.75f),
+                MatLib.Stone, 0.35f);
+            Prim.Cube("Keystone", root.transform, new Vector3(0f, 3.85f, 0.05f), new Vector3(0.5f, 0.4f, 0.55f),
+                MatLib.GoldTrim, 0.45f);
+            Prim.Cube("Threshold", root.transform, new Vector3(0f, 0.1f, 0.2f), new Vector3(2.8f, 0.2f, 1.1f),
+                MatLib.Path, 0.2f);
+
+            // 나무 포트컬리스 문
             Prim.Cube("Gate", root.transform, new Vector3(0f, 1.55f, 0f), new Vector3(2.2f, 2.9f, 0.28f),
-                new Color(0.28f, 0.14f, 0.18f), 0.3f);
+                MatLib.Wood, 0.25f);
             Prim.Cube("BandA", root.transform, new Vector3(0f, 0.7f, 0.16f), new Vector3(2.25f, 0.12f, 0.08f),
                 MatLib.MetalDark, 0.6f);
             Prim.Cube("BandB", root.transform, new Vector3(0f, 1.55f, 0.16f), new Vector3(2.25f, 0.12f, 0.08f),
                 MatLib.MetalDark, 0.6f);
             Prim.Cube("BandC", root.transform, new Vector3(0f, 2.4f, 0.16f), new Vector3(2.25f, 0.12f, 0.08f),
                 MatLib.MetalDark, 0.6f);
-            var seal = Prim.Sphere("Seal", root.transform, new Vector3(0f, 1.7f, 0.28f), 0.35f, MatLib.AccentWine,
+            Prim.Cube("VertBarL", root.transform, new Vector3(-0.55f, 1.55f, 0.18f), new Vector3(0.1f, 2.7f, 0.06f),
+                MatLib.MetalDark, 0.5f);
+            Prim.Cube("VertBarR", root.transform, new Vector3(0.55f, 1.55f, 0.18f), new Vector3(0.1f, 2.7f, 0.06f),
+                MatLib.MetalDark, 0.5f);
+
+            Prim.Cube("BannerL", root.transform, new Vector3(-2.2f, 2.8f, 0.9f), new Vector3(0.7f, 1.6f, 0.06f),
+                MatLib.AccentWine, 0.2f);
+            Prim.Cube("BannerR", root.transform, new Vector3(2.2f, 2.8f, 0.9f), new Vector3(0.7f, 1.6f, 0.06f),
+                MatLib.AccentWine, 0.2f);
+
+            var seal = Prim.Sphere("Seal", root.transform, new Vector3(0f, 1.7f, 0.28f), 0.3f, MatLib.GoldTrim,
                 0.5f);
             seal.GetComponent<MeshRenderer>().sharedMaterial =
-                MatLib.GetEmissive(MatLib.AccentWine, new Color(1f, 0.3f, 0.25f), 2f);
+                MatLib.GetEmissive(MatLib.GoldTrim, new Color(1f, 0.75f, 0.3f), 1.6f);
             var sealLight = seal.AddComponent<Light>();
             sealLight.type = LightType.Point;
-            sealLight.color = new Color(1f, 0.35f, 0.28f);
-            sealLight.range = 4.5f;
-            sealLight.intensity = 1.6f;
+            sealLight.color = new Color(1f, 0.7f, 0.35f);
+            sealLight.range = 5f;
+            sealLight.intensity = 1.3f;
 
             var gateTrigger = root.AddComponent<SphereCollider>();
             gateTrigger.isTrigger = true;
@@ -1297,7 +1358,9 @@ namespace DungeonOdyssey.View3D
 
         private static void AddGateBlockers(Transform root)
         {
-            // 기둥·상인방만 두껍게, 문짝은 얇게 — 앞에서 E 누를 공간 확보
+            // 쌍탑·기둥·상인방 · 문짝(얇게) — 앞에서 E 누를 공간 확보
+            AddBoxBlock(root, "BlockTowerL", new Vector3(-2.2f, 2.4f, 0f), new Vector3(1.5f, 4.8f, 1.5f));
+            AddBoxBlock(root, "BlockTowerR", new Vector3(2.2f, 2.4f, 0f), new Vector3(1.5f, 4.8f, 1.5f));
             AddBoxBlock(root, "BlockPillarL", new Vector3(-1.4f, 1.6f, 0f), new Vector3(0.7f, 3.4f, 0.85f));
             AddBoxBlock(root, "BlockPillarR", new Vector3(1.4f, 1.6f, 0f), new Vector3(0.7f, 3.4f, 0.85f));
             AddBoxBlock(root, "BlockLintel", new Vector3(0f, 3.45f, 0f), new Vector3(3.5f, 0.55f, 0.85f));
@@ -1395,7 +1458,7 @@ namespace DungeonOdyssey.View3D
             return root;
         }
 
-        private static void EnsureDirectionalLight(Color color, Vector3 euler)
+        private static void EnsureDirectionalLight(Color color, Vector3 euler, float intensity = 1.5f)
         {
             Light sun = null;
             foreach (var light in Object.FindObjectsByType<Light>(FindObjectsSortMode.None))
@@ -1418,7 +1481,7 @@ namespace DungeonOdyssey.View3D
                 sun.color = color;
                 sun.transform.rotation = Quaternion.Euler(euler);
                 sun.shadows = LightShadows.Soft;
-                sun.intensity = 1.5f;
+                sun.intensity = intensity;
                 return;
             }
 
@@ -1426,7 +1489,7 @@ namespace DungeonOdyssey.View3D
             var created = go.AddComponent<Light>();
             created.type = LightType.Directional;
             created.color = color;
-            created.intensity = 1.5f;
+            created.intensity = intensity;
             created.shadows = LightShadows.Soft;
             go.transform.rotation = Quaternion.Euler(euler);
         }

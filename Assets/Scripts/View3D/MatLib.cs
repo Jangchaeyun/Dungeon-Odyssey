@@ -3,7 +3,7 @@ using UnityEngine;
 namespace DungeonOdyssey.View3D
 {
     /// <summary>
-    /// 다크 판타지 · 성숙한 톤 팔레트 (채도 낮고 금속·그림자 위주).
+    /// 밝은 황혼 판타지 허브 팔레트 (잔디·파란/빨간 기와·따뜻한 횃불).
     /// </summary>
     public static class MatLib
     {
@@ -143,17 +143,17 @@ namespace DungeonOdyssey.View3D
             return mat;
         }
 
-        // Characters
-        public static readonly Color Skin = new(0.8f, 0.64f, 0.54f);
-        public static readonly Color Hair = new(0.09f, 0.08f, 0.09f);
-        public static readonly Color Cloth = new(0.13f, 0.15f, 0.19f);       // charcoal gambeson
-        public static readonly Color Pants = new(0.11f, 0.11f, 0.13f);
-        public static readonly Color Boot = new(0.15f, 0.11f, 0.09f);
-        public static readonly Color Metal = new(0.58f, 0.6f, 0.64f);        // brushed steel
-        public static readonly Color MetalDark = new(0.26f, 0.28f, 0.32f);
-        public static readonly Color Belt = new(0.4f, 0.26f, 0.15f);         // aged leather
-        public static readonly Color Cape = new(0.16f, 0.07f, 0.09f);         // deep wine
-        public static readonly Color EyeSteel = new(0.58f, 0.68f, 0.72f);
+        // Characters — bright fantasy adventurer
+        public static readonly Color Skin = new(0.86f, 0.7f, 0.58f);
+        public static readonly Color Hair = new(0.18f, 0.12f, 0.1f);
+        public static readonly Color Cloth = new(0.28f, 0.42f, 0.72f);       // blue tunic
+        public static readonly Color Pants = new(0.28f, 0.22f, 0.18f);
+        public static readonly Color Boot = new(0.32f, 0.22f, 0.16f);
+        public static readonly Color Metal = new(0.62f, 0.64f, 0.68f);
+        public static readonly Color MetalDark = new(0.32f, 0.3f, 0.28f);
+        public static readonly Color Belt = new(0.48f, 0.32f, 0.18f);
+        public static readonly Color Cape = new(0.32f, 0.12f, 0.16f);         // dark wine accent
+        public static readonly Color EyeSteel = new(0.45f, 0.55f, 0.7f);
 
         // Monster — void ichor, not candy green
         public static readonly Color Slime = new(0.22f, 0.12f, 0.28f);
@@ -164,26 +164,27 @@ namespace DungeonOdyssey.View3D
         public static readonly Color EyeBlue = new(0.45f, 0.55f, 0.65f);
 
         // NPC
-        public static readonly Color NpcRobe = new(0.22f, 0.18f, 0.28f);     // indigo dusk
-        public static readonly Color NpcTrim = new(0.62f, 0.52f, 0.38f);     // muted brass
+        public static readonly Color NpcRobe = new(0.28f, 0.24f, 0.38f);
+        public static readonly Color NpcTrim = new(0.72f, 0.58f, 0.32f);
 
-        // World — dusk / ash
-        public static readonly Color Grass = new(0.18f, 0.26f, 0.17f);
-        public static readonly Color GrassDark = new(0.11f, 0.15f, 0.11f);
-        public static readonly Color Path = new(0.38f, 0.34f, 0.28f);          // packed dirt
-        public static readonly Color Stone = new(0.42f, 0.41f, 0.43f);
-        public static readonly Color StoneDark = new(0.22f, 0.22f, 0.24f);
-        public static readonly Color Wood = new(0.3f, 0.21f, 0.14f);
-        public static readonly Color Roof = new(0.18f, 0.16f, 0.2f);         // slate
-        public static readonly Color Leaf = new(0.16f, 0.24f, 0.16f);
+        // World — bright twilight fantasy hub
+        public static readonly Color Grass = new(0.32f, 0.52f, 0.28f);
+        public static readonly Color GrassDark = new(0.22f, 0.38f, 0.2f);
+        public static readonly Color Path = new(0.62f, 0.58f, 0.5f);           // cobblestone
+        public static readonly Color Stone = new(0.58f, 0.54f, 0.48f);
+        public static readonly Color StoneDark = new(0.4f, 0.38f, 0.34f);
+        public static readonly Color Wood = new(0.42f, 0.3f, 0.18f);
+        public static readonly Color Roof = new(0.28f, 0.42f, 0.62f);          // blue tile
+        public static readonly Color RoofRed = new(0.68f, 0.28f, 0.22f);       // red tile
+        public static readonly Color Leaf = new(0.22f, 0.42f, 0.22f);
         public static readonly Color DungeonFloor = new(0.09f, 0.09f, 0.11f);
         public static readonly Color DungeonWall = new(0.15f, 0.15f, 0.18f);
-        public static readonly Color AccentTeal = new(0.35f, 0.72f, 0.7f);   // ice accent
-        public static readonly Color AccentCopper = new(0.55f, 0.42f, 0.32f);
-        public static readonly Color AccentWine = new(0.55f, 0.18f, 0.28f);
-        public static readonly Color GoldTrim = new(0.45f, 0.78f, 0.75f);    // cool trim (legacy name)
-        public static readonly Color Fog = new(0.11f, 0.12f, 0.15f);
-        public static readonly Color White = new(0.92f, 0.91f, 0.88f);
+        public static readonly Color AccentTeal = new(0.35f, 0.72f, 0.7f);
+        public static readonly Color AccentCopper = new(0.72f, 0.48f, 0.28f);
+        public static readonly Color AccentWine = new(0.78f, 0.18f, 0.2f);     // banner red
+        public static readonly Color GoldTrim = new(0.82f, 0.68f, 0.32f);     // warm gold
+        public static readonly Color Fog = new(0.62f, 0.66f, 0.74f);           // soft dusk sky
+        public static readonly Color White = new(0.94f, 0.93f, 0.9f);
         public static readonly Color Black = new(0.04f, 0.04f, 0.05f);
     }
 }
